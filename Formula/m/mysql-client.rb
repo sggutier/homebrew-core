@@ -1,8 +1,8 @@
 class MysqlClient < Formula
   desc "Open source relational database management system"
-  homepage "https://dev.mysql.com/doc/refman/8.3/en/"
-  url "https://cdn.mysql.com/Downloads/MySQL-8.3/mysql-boost-8.3.0.tar.gz"
-  sha256 "f0a73556b8a417bc4dc6d2d78909080512beb891930cd93d0740d22207be285b"
+  homepage "https://dev.mysql.com/doc/refman/9.0/en/"
+  url "https://cdn.mysql.com/Downloads/MySQL-9.0/mysql-9.0.0.tar.gz"
+  sha256 "11a76aa3404615c69c82ffc528be069f33d6c17be3b026b3d356181410140b2d"
   license "GPL-2.0-only" => { with: "Universal-FOSS-exception-1.0" }
 
   livecheck do
