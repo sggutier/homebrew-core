@@ -36,12 +36,6 @@ class Glow < Formula
       ```
     EOS
 
-    # failed with Linux CI run, but works with local run
-    # https://github.com/charmbracelet/glow/issues/454
-    if OS.linux?
-      system bin/"glow", test_file
-    else
-      assert_match "# header", shell_output("#{bin}/glow #{test_file}")
-    end
+    assert_match "# header", shell_output("#{bin}/glow -s notty #{test_file}")
   end
 end
