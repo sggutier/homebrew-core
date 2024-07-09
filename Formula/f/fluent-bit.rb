@@ -1,8 +1,8 @@
 class FluentBit < Formula
   desc "Fast and Lightweight Logs and Metrics processor"
   homepage "https://github.com/fluent/fluent-bit"
-  url "https://github.com/fluent/fluent-bit/archive/refs/tags/v3.0.7.tar.gz"
-  sha256 "9c9b94bcdcf1cd0a899b24e1d3e18c6269227512661631814c2ac820683e2ec8"
+  url "https://github.com/fluent/fluent-bit/archive/refs/tags/v3.1.0.tar.gz"
+  sha256 "7a49e110cf3050b6c29c911063494b8081f3c743274d1d95e52562d0476ba1eb"
   license "Apache-2.0"
   head "https://github.com/fluent/fluent-bit.git", branch: "master"
 
@@ -59,10 +59,10 @@ end
 __END__
 --- a/lib/luajit-cmake/LuaJIT.cmake
 +++ b/lib/luajit-cmake/LuaJIT.cmake
-@@ -569,13 +569,13 @@ set(luajit_headers
+@@ -660,13 +660,13 @@ set(luajit_headers
    ${LJ_DIR}/luaconf.h
-   ${LJ_DIR}/luajit.h
    ${LJ_DIR}/lualib.h)
+   ${CMAKE_CURRENT_BINARY_DIR}/luajit.h)
 -install(FILES ${luajit_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/luajit)
 +install(FILES ${luajit_headers} DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/include/luajit)
  install(TARGETS libluajit
