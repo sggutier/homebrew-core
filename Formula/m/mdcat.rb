@@ -1,8 +1,8 @@
 class Mdcat < Formula
   desc "Show markdown documents on text terminals"
   homepage "https://github.com/swsnr/mdcat"
-  url "https://github.com/swsnr/mdcat/archive/refs/tags/mdcat-2.1.2.tar.gz"
-  sha256 "332c8e659a668ceeae70b0d268a46f00bf8bab696dbf7f84faa69b3c509da286"
+  url "https://github.com/swsnr/mdcat/archive/refs/tags/mdcat-2.2.0.tar.gz"
+  sha256 "bc57c65786dbb4986d75762252b76a73ab52dc60f3b088089753a0d51617cdb0"
   license "MPL-2.0"
   head "https://github.com/swsnr/mdcat.git", branch: "main"
 
@@ -15,8 +15,6 @@ class Mdcat < Formula
     sha256 cellar: :any_skip_relocation, monterey:       "54e7faca0303e2ef5cba4d84e76e24a6cfcb0c4652852252576d5c4533c17ee9"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "68db6d25634ac8a5b2c2bb51a9e7f6c0b72366868b49409eacfcf400ff308274"
   end
-
-  deprecate! date: "2024-04-05", because: :repo_archived
 
   depends_on "asciidoctor" => :build
   depends_on "cmake" => :build
