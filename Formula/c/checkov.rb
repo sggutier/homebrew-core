@@ -3,8 +3,8 @@ class Checkov < Formula
 
   desc "Prevent cloud misconfigurations during build-time for IaC tools"
   homepage "https://www.checkov.io/"
-  url "https://files.pythonhosted.org/packages/8b/99/5a5a1218a553f456d350324e3d4ecbf2b7f61f752314ea7fcb15bd510f49/checkov-3.2.180.tar.gz"
-  sha256 "a594cea7e95044127196b6c677898fcd88023ea1a33c256f2333bb057184d98d"
+  url "https://files.pythonhosted.org/packages/f6/5d/122f8e677dd7d99d0b6bf9f552dadcbeaf1302c18ef5f8a8f9c500b5ce88/checkov-3.2.190.tar.gz"
+  sha256 "1b9555231ca68b38c9ec1b73ce468ed9568071915831db8c94f1d53743d318c3"
   license "Apache-2.0"
 
   livecheck do
@@ -71,8 +71,8 @@ class Checkov < Formula
   end
 
   resource "bc-detect-secrets" do
-    url "https://files.pythonhosted.org/packages/0b/6b/f9dd98a34012e58cba7642c44132b620c9bd4cab37fc07d4efe2b81ac9b3/bc-detect-secrets-1.5.13.tar.gz"
-    sha256 "682d77312d1d2839a3996f814841d92afad08d2f47db95473b87006302b91163"
+    url "https://files.pythonhosted.org/packages/8e/fd/21ee4081b7b2c15515183a1b487bbd41a84180735c34b39c2c7665b0cfe9/bc-detect-secrets-1.5.15.tar.gz"
+    sha256 "0d7b2854e0c0672c95347bc4d310f5fbe245bd6154d8adf78a78204409432100"
   end
 
   resource "bc-jsonpath-ng" do
@@ -301,8 +301,8 @@ class Checkov < Formula
   end
 
   resource "prettytable" do
-    url "https://files.pythonhosted.org/packages/19/d3/7cb826e085a254888d8afb4ae3f8d43859b13149ac8450b221120d4964c9/prettytable-3.10.0.tar.gz"
-    sha256 "9665594d137fb08a1117518c25551e0ede1687197cf353a4fdc78d27e1073568"
+    url "https://files.pythonhosted.org/packages/4c/90/e1c8c06235d53c3adaae74d295669612beea5f5a2052b3184a763e7bdd62/prettytable-3.10.2.tar.gz"
+    sha256 "29ec6c34260191d42cd4928c28d56adec360ac2b1208a26c7e4f14b90cc8bc84"
   end
 
   resource "py-serializable" do
@@ -451,8 +451,8 @@ class Checkov < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/c8/93/65e479b023bbc46dab3e092bda6b0005424ea3217d711964ccdede3f9b1b/urllib3-1.26.19.tar.gz"
-    sha256 "3e3d753a8618b86d7de333b4223005f68720bcd6a7d2bcb9fbd2229ec7c1e429"
+    url "https://files.pythonhosted.org/packages/af/47/b215df9f71b4fdba1025fc05a77db2ad243fa0926755a52c5e71659f4e3c/urllib3-2.0.7.tar.gz"
+    sha256 "c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84"
   end
 
   resource "wcwidth" do
