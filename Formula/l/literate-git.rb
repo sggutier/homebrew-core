@@ -3,10 +3,9 @@ class LiterateGit < Formula
 
   desc "Render hierarchical git repositories into HTML"
   homepage "https://github.com/bennorth/literate-git"
-  url "https://files.pythonhosted.org/packages/bd/1d/d8b406bb72174e3869c3d3242aec9ebd435a7b38cc9c4b0a34edd2bdf2b7/literategit-0.4.7.tar.gz"
-  sha256 "b669f7209638e1a2a98304f749f5f2cc594db353c2b50d7be720cf6b261da97e"
+  url "https://files.pythonhosted.org/packages/7f/eb/b9798ba7c4e818b26b7214dff2bd43d4ec58c8dab956e5d71e9b5549b099/literategit-0.4.8.tar.gz"
+  sha256 "4dbbaf08a6db02d8a1076e3ef54ea046bd297b47abadd06c35812a4ca2aff8a1"
   license "GPL-3.0-or-later"
-  revision 1
 
   bottle do
     sha256 cellar: :any,                 arm64_sonoma:   "dc3bb7409c8a14d06f16ca896b49b17c7549d217b8b809a5a13a5f99aae12ea1"
@@ -18,8 +17,10 @@ class LiterateGit < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "58fd27c6a6b014e312352d54e0972ec39c1f3b11f0eca601fe12fd0bccc618c9"
   end
 
-  depends_on "libgit2@1.7"
+  depends_on "libgit2"
   depends_on "python@3.12"
+
+  uses_from_macos "libffi"
 
   on_linux do
     depends_on "pkg-config" => :build
@@ -41,8 +42,8 @@ class LiterateGit < Formula
   end
 
   resource "markdown2" do
-    url "https://files.pythonhosted.org/packages/74/89/a6bb59171d0bd5a3b19deb834ec29378a7c8e05bcb0a4dd4e5cb418ea03b/markdown2-2.4.13.tar.gz"
-    sha256 "18ceb56590da77f2c22382e55be48c15b3c8f0c71d6398def387275e6c347a9f"
+    url "https://files.pythonhosted.org/packages/da/00/3c708de5bffa0494daf894d2e8e2b6165f866ef3ae7939546fae039b5f0e/markdown2-2.5.0.tar.gz"
+    sha256 "9bff02911f8b617b61eb269c4c1a5f9b2087d7ff051604f66a61b63cab30adc2"
   end
 
   resource "markupsafe" do
@@ -56,18 +57,13 @@ class LiterateGit < Formula
   end
 
   resource "pygit2" do
-    url "https://files.pythonhosted.org/packages/f0/5e/6e05213a9163bad15489beda5f958500881d45889b0df01d7b8964f031bf/pygit2-1.14.1.tar.gz"
-    sha256 "ec5958571b82a6351785ca645e5394c31ae45eec5384b2fa9c4e05dde3597ad6"
+    url "https://files.pythonhosted.org/packages/53/77/d33e2c619478d0daea4a50f9ffdd588db2ca55817c7e9a6c796fca3b80ef/pygit2-1.15.1.tar.gz"
+    sha256 "e1fe8b85053d9713043c81eccc74132f9e5b603f209e80733d7955eafd22eb9d"
   end
 
   resource "pygments" do
     url "https://files.pythonhosted.org/packages/8e/62/8336eff65bcbc8e4cb5d05b55faf041285951b6e80f33e2bff2024788f31/pygments-2.18.0.tar.gz"
     sha256 "786ff802f32e91311bff3889f6e9a86e81505fe99f2735bb6d60ae0c5004f199"
-  end
-
-  resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/d6/4f/b10f707e14ef7de524fe1f8988a294fb262a29c9b5b12275c7e188864aed/setuptools-69.5.1.tar.gz"
-    sha256 "6c1fccdac05a97e598fb0ae3bbed5904ccb317337a51139dcd51453611bbb987"
   end
 
   def install
