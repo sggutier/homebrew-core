@@ -1,8 +1,8 @@
 class FluentBit < Formula
   desc "Fast and Lightweight Logs and Metrics processor"
   homepage "https://github.com/fluent/fluent-bit"
-  url "https://github.com/fluent/fluent-bit/archive/refs/tags/v3.0.7.tar.gz"
-  sha256 "9c9b94bcdcf1cd0a899b24e1d3e18c6269227512661631814c2ac820683e2ec8"
+  url "https://github.com/fluent/fluent-bit/archive/refs/tags/v3.1.3.tar.gz"
+  sha256 "4c745066223811047e3911c19db118eadec579ca62ef833a1b1fb573acd8cb85"
   license "Apache-2.0"
   head "https://github.com/fluent/fluent-bit.git", branch: "master"
 
@@ -59,10 +59,10 @@ end
 __END__
 --- a/lib/luajit-cmake/LuaJIT.cmake
 +++ b/lib/luajit-cmake/LuaJIT.cmake
-@@ -569,13 +569,13 @@ set(luajit_headers
+@@ -667,13 +667,13 @@ set(luajit_headers
    ${LJ_DIR}/luaconf.h
-   ${LJ_DIR}/luajit.h
-   ${LJ_DIR}/lualib.h)
+   ${LJ_DIR}/lualib.h
+   ${CMAKE_CURRENT_BINARY_DIR}/luajit.h)
 -install(FILES ${luajit_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/luajit)
 +install(FILES ${luajit_headers} DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/include/luajit)
  install(TARGETS libluajit
@@ -76,4 +76,4 @@ __END__
 +if (FALSE)
    add_executable(luajit ${LJ_DIR}/luajit.c)
    target_link_libraries(luajit libluajit)
-   if(APPLE AND ${CMAKE_C_COMPILER_ID} STREQUAL "zig")
+   target_include_directories(luajit PRIVATE
