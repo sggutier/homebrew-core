@@ -1,8 +1,8 @@
 class Pushpin < Formula
   desc "Reverse proxy for realtime web services"
   homepage "https://pushpin.org/"
-  url "https://github.com/fastly/pushpin/releases/download/v1.39.1/pushpin-1.39.1.tar.bz2"
-  sha256 "a78d8088ed49a0b07b665148e6bced1581c32f490452c8043f54bbe4a55c1e14"
+  url "https://github.com/fastly/pushpin/releases/download/v1.40.0/pushpin-1.40.0.tar.bz2"
+  sha256 "d9878af35dbe72ca07db11b8ef742bcf8cc48de81f782cc05837c3754bd9cd38"
   license "Apache-2.0"
   head "https://github.com/fastly/pushpin.git", branch: "main"
 
@@ -16,7 +16,9 @@ class Pushpin < Formula
   depends_on "boost" => :build
   depends_on "pkg-config" => :build
   depends_on "rust" => :build
+
   depends_on "mongrel2"
+  depends_on "openssl@3"
   depends_on "python@3.12"
   depends_on "qt"
   depends_on "zeromq"
@@ -28,6 +30,10 @@ class Pushpin < Formula
     # Work around `cc` crate picking non-shim compiler when compiling `ring`.
     # This causes include/GFp/check.h:27:11: fatal error: 'assert.h' file not found
     ENV["HOST_CC"] = ENV.cc
+
+    # Ensure that the `openssl` crate picks up the intended library.
+    ENV["OPENSSL_DIR"] = Formula["openssl@3"].opt_prefix
+    ENV["OPENSSL_NO_VENDOR"] = "1"
 
     args = %W[
       RELEASE=1
@@ -41,6 +47,14 @@ class Pushpin < Formula
 
     system "make", *args
     system "make", *args, "install"
+  end
+
+  def check_binary_linkage(binary, library)
+    binary.dynamically_linked_libraries.any? do |dll|
+      next false unless dll.start_with?(HOMEBREW_PREFIX.to_s)
+
+      File.realpath(dll) == File.realpath(library)
+    end
   end
 
   test do
@@ -95,12 +109,20 @@ class Pushpin < Formula
     ENV["LANG"] = "en_US.UTF-8"
 
     pid = fork do
-      exec "#{bin}/pushpin", "--config=#{conffile}"
+      exec bin/"pushpin", "--config=#{conffile}"
     end
 
     begin
       sleep 3 # make sure pushpin processes have started
       system Formula["python@3.12"].opt_bin/"python3.12", runfile
+
+      [
+        Formula["openssl@3"].opt_lib/shared_library("libcrypto"),
+        Formula["openssl@3"].opt_lib/shared_library("libssl"),
+      ].each do |library|
+        assert check_binary_linkage(bin/"pushpin", library),
+              "No linkage with #{library.basename}! Cargo is likely using a vendored version."
+      end
     ensure
       Process.kill("TERM", pid)
       Process.wait(pid)
