@@ -1688,6 +1688,7 @@ mu
 muffet
 mujs
 multitail
+mupen64plus
 murex
 musikcube
 mutt
