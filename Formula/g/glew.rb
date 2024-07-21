@@ -25,6 +25,8 @@ class Glew < Formula
 
   on_linux do
     depends_on "freeglut" => :test
+    depends_on "libx11"
+    depends_on "mesa"
     depends_on "mesa-glu"
   end
 
