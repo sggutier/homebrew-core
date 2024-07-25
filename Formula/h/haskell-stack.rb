@@ -1,10 +1,19 @@
 class HaskellStack < Formula
   desc "Cross-platform program for developing Haskell projects"
   homepage "https://haskellstack.org/"
-  url "https://github.com/commercialhaskell/stack/archive/refs/tags/v2.15.7.tar.gz"
-  sha256 "a508663e2bd92c1b6326ce313c623c2fc2d91d9dec962e88d953b2dc49a78b20"
   license "BSD-3-Clause"
   head "https://github.com/commercialhaskell/stack.git", branch: "master"
+
+  stable do
+    url "https://github.com/commercialhaskell/stack/archive/refs/tags/v2.15.7.tar.gz"
+    sha256 "a508663e2bd92c1b6326ce313c623c2fc2d91d9dec962e88d953b2dc49a78b20"
+
+    # Backport upper bound for tar dependency. Remove in the next release
+    patch do
+      url "https://github.com/commercialhaskell/stack/commit/548888387a98a0c101ed82670ddde1ec2f1a20c2.patch?full_index=1"
+      sha256 "0843883c2eea4a48a4ba9835f9d8e5d964a2ff635a2d90b33e8572b086dc58d1"
+    end
+  end
 
   livecheck do
     url :stable
@@ -22,7 +31,7 @@ class HaskellStack < Formula
   end
 
   depends_on "cabal-install" => :build
-  depends_on "ghc" => :build
+  depends_on "ghc@9.8" => :build
 
   uses_from_macos "zlib"
 
@@ -32,7 +41,6 @@ class HaskellStack < Formula
     (buildpath/"cabal.project").unlink
     (buildpath/"cabal.project").write <<~EOS
       packages: .
-      constraints: tar < 0.6
     EOS
 
     system "cabal", "v2-update"
