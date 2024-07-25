@@ -33,7 +33,7 @@ class LxiTools < Formula
     system "meson", "setup", "build", *std_meson_args
     system "meson", "compile", "-C", "build", "--verbose"
     system "meson", "install", "-C", "build"
-    rm_f "#{share}/glib-2.0/schemas/gschemas.compiled"
+    rm("#{share}/glib-2.0/schemas/gschemas.compiled")
   end
 
   def post_install
